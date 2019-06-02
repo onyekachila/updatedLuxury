@@ -10,12 +10,12 @@
   <section class="content-header">
     <h1>
 
-      <small>List of categories</small>
+      <small>List of products</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">List</a></li>
-      <li class="active">Categories</li>
+      <li class="active">products</li>
     </ol>
   </section>
 
@@ -45,22 +45,30 @@
                         <thead>
                         <tr>
                           <th>No</th>
-                          <th>Tag Name</th>
-                          <th>Slug</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
+                          <th>Product</th>
+                          <th>Price</th>
+                          <th>Color</th>
+                          <th>Category</th>
+                          <th>Product Image</th>
+                          <th>Action</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($categories as $category)
+                        @foreach($all_product as $v_products)
                           <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
+                            <td>{{ $v_products->product_name }}</td>
+                            <td>{{ $v_products->product_price }}</td>
+                            <td>{{ $v_products->product_color }}</td>
+                            <td>{{ $v_products->category_id }}</td>
+                            <td><img src="{{ asset('admin/images/' . $v_products->product_image)}}" style="height: 80px; width: 80px"></td>
 
-                              <td>
-                              <a href="{{ route('editcategory',$category->id) }}"><span class="btn btn-info btn-sm "> Edit</span></a>
-                              <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('deletecategory',$category->id) }}" style="display: none">
+                            <td>
+                                <a href="{{ route('editproduct', $v_products->id) }}"><span class="btn btn-info">Edit</span></a>
+
+                                <form id="delete-form-{{ $v_products->id }}" method="post" action="{{ route('deleteproduct', $v_products->id) }}" style="display: none">
+
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
                                 </form>
@@ -68,12 +76,12 @@
                                 if(confirm('Are you sure, You Want to delete this?'))
                                     {
                                       event.preventDefault();
-                                      document.getElementById('delete-form-{{ $category->id }}').submit();
+                                      document.getElementById('delete-form-{{ $v_products->id }}').submit();
                                     }
                                     else{
                                       event.preventDefault();
-                                    }" ><span class="btn btn-danger btn-sm "> Delete</span></a>
-                              </td>
+                                    }" ><span class="btn btn-danger">Delete</span></a>
+                            </td>
 
                             </tr>
                           </tr>

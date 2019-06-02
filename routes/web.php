@@ -39,8 +39,15 @@ Route::group(['namespace' => 'Admin'],function(){
 
     Route::match(['get','post'],'/admin/add-category','CategoryController@addCategory')->name('addcategory');
     Route::match(['get','post','put'],'/admin/edit-category/{id}','CategoryController@editCategory')->name('editcategory');
-    Route::match(['get','post', 'delete'],'/admin/delete-category/{id}','CategoryController@deleteCategory')->name('deletecategory');;
+    Route::match(['get','post', 'delete'],'/admin/delete-category/{id}','CategoryController@deleteCategory')->name('deletecategory');
     Route::get('/admin/view-categories','CategoryController@viewCategories')->name('viewcategory');
+
+    Route::get('/add-product', 'ProductController@index')->name('addproduct');
+    Route::post('/save-product', 'ProductController@saveProduct')->name('saveproduct');
+    Route::match(['get','post','put'],'/admin/edit-product/{id}','ProductController@editCategory')->name('editproduct');
+    Route::get('/all-product', 'ProductController@allProduct')->name('allproduct');
+    Route::match(['get','post', 'delete'],'/admin/delete-product/{id}','ProductController@deleteProduct')->name('deleteproduct');
+
 
 
 });

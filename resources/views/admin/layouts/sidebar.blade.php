@@ -26,8 +26,6 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
             <li class=""><a href="#"><i class="fa fa-circle-o"></i> Posts</a></li>
-            <li class=""><a href="{{ route('addcategory') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
-
             <li class="treeview menu-open">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Categories</span>
@@ -36,11 +34,24 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: block;">
-                    <li><a href="{{ route('addcategory') }}"><i class="fa fa-circle-o"></i> Add CAtegory</a></li>
-                    <li><a href="{{ route('viewcategory') }}"><i class="fa fa-circle-o"></i> View All Category</a></li>
-
+                    <li><a href="{{ route('addcategory') }}"><i class="fa fa-circle-o"></i>Add Category</a></li>
+                    <li><a href="{{ route('viewcategory') }}"><i class="fa fa-circle-o"></i>View All Category</a></li>
                 </ul>
             </li>
+
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Products</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="{{ route('addproduct') }}"><i class="fa fa-circle-o"></i>Add Product</a></li>
+            <li><a href="{{ route('allproduct') }}"><i class="fa fa-circle-o"></i>View Products</a></li>
+          </ul>
+        </li>
 
 
 

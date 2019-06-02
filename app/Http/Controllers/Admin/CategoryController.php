@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\admin\Category;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -12,20 +13,13 @@ class CategoryController extends Controller
    if($request->isMethod('post')){
            $data = $request->all();
 
-        //     if (empty($data['status'])) {
-        //        $status=0;
-
-        //    }else{
-        //      $status=1;
-        //    }
-
            $category = new Category;
            $category->name = $data['name'];
            $category->slug = $data['slug'];
            //$category->status = $status;
 
            $category->save();
-           return redirect('/admin/view-categories')->with('flash_message_success','category created successfully!');
+           return redirect('/admin/view-categories')->with('success','category created successfully!');
        }
        return view('admin.categories.add_category');
 
@@ -50,7 +44,7 @@ class CategoryController extends Controller
         //   $status=1;
         // }
         Category::where(['id'=>$id])->update(['name'=>$data['name'],'slug'=>$data['slug']]);
-        return redirect('/admin/view-categories')->with('flash_message_success','Category updated Successfully!');
+        return redirect('/admin/view-categories')->with('success','Category updated Successfully!');
     }
     $category = Category::where(['id'=>$id])->first();
     return view('admin.categories.edit_category')->with(compact('category'));
@@ -59,7 +53,7 @@ class CategoryController extends Controller
    public function deleteCategory(Request $request, $id = null){
        if(!empty($id)){
            Category::where(['id'=>$id])->delete();
-           return redirect()->back()->with('flash_message_success','category deleted successfully!');
+           return redirect()->back()->with('success','category deleted successfully!');
        }
    }
 

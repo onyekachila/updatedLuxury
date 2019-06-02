@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function index()
+
+    protected $table = 'categories';
+
+    public function products()
     {
-        return view('admin.category.add_category');
+    	return $this->hasMany('App\Model\admin\Product');
     }
 }
